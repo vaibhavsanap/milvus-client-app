@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: milvus-test-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: milvus-test-app
+  template:
+    metadata:
+      labels:
+        app: milvus-test-app
+    spec:
+      containers:
+      - name: milvus-test-app
+        image: milvus-test-app:latest
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: MILVUS_ADDRESS
+          value: "milvus-standalone:19530"
